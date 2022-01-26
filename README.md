@@ -9,3 +9,6 @@ Future Additions
 - Add a running stopwatch beside the money clock
 - Add features for yearly salary
 - Add a tax checkbox to calculate for an approximated tax bracket
+
+Tools I Used
+- pyinstaller to convert to an executable

@@ -1,4 +1,5 @@
 import tkinter
+import datetime
 from tkinter import *
 
 ws = Tk()
@@ -7,6 +8,8 @@ ws.config(bg='#299617')
 
 rate = 0
 counter = 0
+timer = 0
+
 flag = False
 running = False
 
@@ -15,16 +18,22 @@ def counter_label(lbl):
     def count():
         if running:
             global counter
+            global timer # seconds
             global rate
+
             if flag == False:
                 display = "$ --"
+                displayTime = "00:00:00"
             else:
                 display = '$ ' + f"{counter:.2f}"
+                displayTime = str(datetime.timedelta(seconds=int(timer)))
 
             lbl['text'] = display
+            lblTime['text'] = displayTime
 
-            lbl.after(8, count)
-            counter += .008 * rate / 3600
+            lbl.after(10, count)
+            timer += .01
+            counter += rate / 360000
 
     count()
 
@@ -50,12 +59,16 @@ def StopTimer():
 
 def ResetTimer(lbl):
     global counter
+    global timer
     counter = 0
+    timer = 0
     if running == False:
         reset_btn['state'] = 'disabled'
         lbl['text'] = '$ 0.00'
+        lblTime['text'] = '00:00:00'
     else:
         lbl['text'] = ''
+        lblTime['text'] = ''
 
 
 def validate(value):
@@ -91,6 +104,14 @@ lbl = Label(
     font="Verdana 40 bold"
 )
 
+lblTime = Label(
+    ws,
+    text="00:00:00",
+    fg="black",
+    bg='#299617',
+    font="Verdana 20 bold"
+)
+
 label_entry = Label(
     ws,
     text="Enter Rate:",
@@ -119,6 +140,7 @@ label_msg = Label(
 
 lbl.grid(column=1, row=1, padx=10, pady=0, sticky=tkinter.W, columnspan=3)
 label_msg.grid(column=1, row=2, padx=25, pady=0, sticky=tkinter.W, columnspan=3)
+lblTime.grid(column=0, row=1, padx=10, pady=0, sticky=tkinter.W)
 
 start_btn = Button(
     ws,
