@@ -3,12 +3,13 @@ This program functions as a stopwatch for your job. You can start it when you st
 
 Current Features
 - Enter a wage by typing in the text-box and pressing <"Enter"> on a keyboard.
+- Running stopwatch beside the money clock.
 - Start, Stop, and Reset buttons.
 
 Future Additions
-- Add a running stopwatch beside the money clock
 - Add features for yearly salary
 - Add a tax checkbox to calculate for an approximated tax bracket
 
 Tools I Used
 - pyinstaller to convert to an executable
+- started with code from https://pythonguides.com/python-tkinter-stopwatch/
